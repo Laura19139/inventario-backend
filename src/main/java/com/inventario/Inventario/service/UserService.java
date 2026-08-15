@@ -36,7 +36,10 @@ public class UserService {
 
     // LISTAR TODOS
     public List<User> getAllUsers() {
-        return repo.findAll();
+        List<User> users = repo.findAll();
+        users.forEach(user -> user.setPassword("***"));
+
+        return users;
     }
 
     // BUSCAR POR ID
@@ -47,7 +50,10 @@ public class UserService {
             throw new Exception("Usuario no encontrado");
         }
 
-        return user.get();
+        var usuario = user.get();
+        usuario.setPassword("****");
+        
+        return usuario;
     }
 
     // ACTUALIZAR
